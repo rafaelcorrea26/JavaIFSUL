@@ -13,19 +13,23 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 
-public class ViewProduto extends javax.swing.JFrame {
+public class TelaProduto extends javax.swing.JFrame {
 
+    private void TrocaComponenteComEnter() {
+
+    }
+
+    ;
     /**
      * Creates new form ViewProduto
      */
     //  TabelaProduto tableModel = new TabelaProduto();
-    public ViewProduto() {
+    public TelaProduto() {
         initComponents();
-
         // Trocar Enter por TAB para ficar mais usual.
-        HashSet conj = new HashSet(this.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS));
-        conj.add(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0));
-        this.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, conj);
+          HashSet conj = new HashSet(this.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS));
+            conj.add(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0));
+           this.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, conj);
 
         Conexao c = new Conexao();
         c.ConectaBancoDados();
@@ -66,6 +70,12 @@ public class ViewProduto extends javax.swing.JFrame {
         ));
         jsPainel.setViewportView(jTProdutos);
 
+        edtDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                edtDescricaoKeyPressed(evt);
+            }
+        });
+
         lblDescricao.setText("Descrição");
 
         lblQtde.setText("QTD");
@@ -76,6 +86,11 @@ public class ViewProduto extends javax.swing.JFrame {
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
+            }
+        });
+        btnSalvar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnSalvarKeyPressed(evt);
             }
         });
 
@@ -207,12 +222,20 @@ public class ViewProduto extends javax.swing.JFrame {
         c.Listar(jTProdutos);
     }//GEN-LAST:event_btnListarActionPerformed
 
+    private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
+        Conexao c = new Conexao();
+        c.ConectaBancoDados();
+        c.Inserir(edtDescricao.getText(), edtQtde.getText(), edtValor.getText());
+        c.Listar(jTProdutos);
+
+    }//GEN-LAST:event_btnSalvarKeyPressed
+
+    private void edtDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtDescricaoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtDescricaoKeyPressed
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -221,23 +244,24 @@ public class ViewProduto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewProduto().setVisible(true);
-
+                new TelaProduto().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
