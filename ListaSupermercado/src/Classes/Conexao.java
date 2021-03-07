@@ -59,7 +59,7 @@ public class Conexao {
 
         try {
 
-            String sql = "update PRODUTO set (DESCRICAO = '" + pDescricao + "', QTDE = " + pQtde + ",VALOR = " + pValor + ") WHERE ID = " + pID;
+            String sql = "update PRODUTO set DESCRICAO = '" + pDescricao + "', QTDE = " + pQtde + ",VALOR = " + pValor + " WHERE ID = " + pID;
             PreparedStatement ps = ConexaoBanco.prepareStatement(sql);
             ps.execute();
 

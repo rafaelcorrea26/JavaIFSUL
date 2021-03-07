@@ -15,11 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class TelaProduto extends javax.swing.JFrame {
 
-    private void TrocaComponenteComEnter() {
 
-    }
-
-    ;
     /**
      * Creates new form ViewProduto
      */
@@ -205,7 +201,6 @@ public class TelaProduto extends javax.swing.JFrame {
         if (jTProdutos.getSelectedRow() != -1) {
             Conexao c = new Conexao();
             c.ConectaBancoDados();
-
             DefaultTableModel dtm = (DefaultTableModel) jTProdutos.getModel(); // capturei modelo
             int row = jTProdutos.getSelectedRow();
 
